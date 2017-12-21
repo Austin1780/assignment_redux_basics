@@ -7,10 +7,12 @@ import { createStore } from "redux";
 import { bankApp } from "./reducers.js";
 import {
   createAccount,
-  createTransaction,
   setDateFilter,
   setAccountFilter,
-  setAccountSort
+  setAccountSort,
+  deposit,
+  withdrawl,
+  transfer
 } from "./actions.js";
 
 let store = createStore(bankApp);
@@ -27,10 +29,8 @@ store.dispatch(
 );
 
 store.dispatch(
-  createTransaction({
-    type: "deposit",
-    sourceAccount: "ext",
-    recipientAccount: "1",
+  deposit({
+    toId: "1",
     amount: "5",
     date: "2017-12-21"
   })

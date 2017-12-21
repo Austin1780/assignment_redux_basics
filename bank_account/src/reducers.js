@@ -1,21 +1,27 @@
-import { combineReducers } from "redux";
+import {combineReducers} from 'redux';
 import {
   CREATE_ACCOUNT,
-  CREATE_TRANSACTION,
+  DEPOSIT,
+  WITHDRAWL,
+  TRANSFER,
   SET_DATE_FILTER,
   SET_ACCOUNT_FILTER,
-  SET_ACCOUNT_SORT
-} from "./actions";
+  SET_ACCOUNT_SORT,
+} from './actions';
 
-const createAccount = (state = [], action) => {
-  switch (action.type) {
+const bank = (state = {accounts: [], transactions: []}, action) => {
+  switch(action.type) {
     case CREATE_ACCOUNT:
       return [...state, action.data];
+    case DEPOSIT:
+      return
+    case WITHDRAWL
+      return
+    case TRANSFER
     default:
-      return state;
-  }
+      return state
+  };
 };
-
 const createTransaction = (state = [], action) => {
   switch (action.type) {
     case CREATE_TRANSACTION:
@@ -25,7 +31,7 @@ const createTransaction = (state = [], action) => {
   }
 };
 
-const dateFilter = (state = "", action) => {
+const dateFilter = (state = '', action) => {
   switch (action.type) {
     case SET_DATE_FILTER:
       return action.data;
@@ -34,7 +40,7 @@ const dateFilter = (state = "", action) => {
   }
 };
 
-const accountFilter = (state = "", action) => {
+const accountFilter = (state = '', action) => {
   switch (action.type) {
     case SET_ACCOUNT_FILTER:
       return action.data;
@@ -48,5 +54,4 @@ export const bankApp = combineReducers({
   createTransaction,
   dateFilter,
   accountFilter,
-  accountSort
 });
