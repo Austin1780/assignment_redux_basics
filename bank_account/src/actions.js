@@ -1,53 +1,41 @@
-export const CREATE_ITEM = "CREATE_ITEM";
-export const PURCHASE_ITEM = "PURCHASE_ITEM";
-export const SET_PURCHASE_FILTER = "SET_PURCHASE_FILTER";
-export const SET_CATEGORY_FILTER = "SET_CATEGORY_FILTER";
-export const SET_NAME_SORT = "SET_NAME_SORT";
-export const SET_DESCRIPTION_SORT = "SET_DESCRIPTION_SORT";
+export const CREATE_ACCOUNT = "CREATE_ACCOUNT";
+export const CREATE_TRANSACTION = "CREATE_TRANSACTION";
+export const SET_DATE_FILTER = "SET_DATE_FILTER";
+export const SET_ACCOUNT_FILTER = "SET_ACCOUNT_FILTER";
+export const SET_ACCOUNT_SORT = "SET_ACCOUNT_SORT";
 
-let nextItemId = 1;
-export const createItem = data => {
+let nextAccountId = 0;
+export const createAccount = data => {
   return {
-    type: CREATE_ITEM,
+    type: CREATE_ACCOUNT,
     data: {
       ...data,
-      id: nextItemId++
+      id: nextAccountId++
     }
   };
 };
 
-export const purchaseItem = id => {
+let nextTransactionId = 0;
+export const createTransaction = data => {
   return {
-    type: PURCHASE_ITEM,
-    data: id
+    type: CREATE_TRANSACTION,
+    data: {
+      ...data,
+      id: nextTransactionId++
+    }
   };
 };
 
-export const setPurchaseFilter = data => {
+export const setDateFilter = data => {
   return {
-    type: SET_PURCHASE_FILTER,
+    type: SET_DATE_FILTER,
     data
   };
 };
 
-export const setCategoryFilter = data => {
+export const setAccountFilter = data => {
   return {
-    type: SET_CATEGORY_FILTER,
+    type: SET_ACCOUNT_FILTER,
     data
   };
 };
-
-export const setNameSort = (data) => {
-  return {
-    type: SET_NAME_SORT,
-    data
-  };
-};
-
-export const setDescriptionSort = (data) => {
-  return {
-    type: SET_DESCRIPTION_SORT,
-    data
-  };
-};
-

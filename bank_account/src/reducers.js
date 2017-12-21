@@ -1,76 +1,52 @@
 import { combineReducers } from "redux";
+import {
+  CREATE_ACCOUNT,
+  CREATE_TRANSACTION,
+  SET_DATE_FILTER,
+  SET_ACCOUNT_FILTER,
+  SET_ACCOUNT_SORT
+} from "./actions";
 
-// Import the action type constants
-import { CREATE_ITEM, PURCHASE_ITEM , SET_CATEGORY_FILTER, SET_PURCHASE_FILTER, } from "./actions";
-
-// Puppies reducer
-// Default state is simply an empty array
-// (no puppies yet)
-const groceryList = (state = [], action) => {
-  // Use the same action type constants from actions file
+const createAccount = (state = [], action) => {
   switch (action.type) {
-    case CREATE_ITEM:
+    case CREATE_ACCOUNT:
       return [...state, action.data];
-    case PURCHASE_ITEM:
-      return state.map(item => {
-        if (item.id === action.data) {
-          return {
-            ...item,
-            desiredAmount: item.desiredAmount--,
-            currentAmount: item.currentAmount++
-          };
-        }
-        return item;
-      });
-
     default:
       return state;
   }
 };
 
-// Separate reducer for the filter which is independent
-// from the puppies.
-const purchaseFilter = (state = "NOT_PURCHASED", action) => {
+const createTransaction = (state = [], action) => {
   switch (action.type) {
-    case SET_PURCHASE_FILTER:
-      return action.data;
+    case CREATE_TRANSACTION:
+      return [...state, action.data];
     default:
       return state;
   }
 };
 
-const categoryFilter = (state = "all", action) => {
+const dateFilter = (state = "", action) => {
   switch (action.type) {
-    case SET_CATEGORY_FILTER:
+    case SET_DATE_FILTER:
       return action.data;
     default:
       return state;
   }
 };
 
-const nameSort = (state="", action) => {
-  switch(action.type) {
-    case "SET_NAME_SORT":
+const accountFilter = (state = "", action) => {
+  switch (action.type) {
+    case SET_ACCOUNT_FILTER:
       return action.data;
     default:
       return state;
   }
-}
+};
 
-const descriptionSort = (state="", action) => {
-  switch(action.type) {
-    case "SET_DESCRIPTION_SORT":
-      return action.data;
-    default:
-      return state;
-  };
-}
-
-// Combine our 2 reducers into one
-export const groceryListApp = combineReducers({
-  groceryList,
-  purchaseFilter,
-  categoryFilter,
-  nameSort,
-  descriptionSort
+export const bankApp = combineReducers({
+  createAccount,
+  createTransaction,
+  dateFilter,
+  accountFilter,
+  accountSort
 });

@@ -3,50 +3,42 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
-
-// Import the createStore method from Redux
 import { createStore } from "redux";
 import { bankApp } from "./reducers.js";
 import {
   createAccount,
   createTransaction,
-  setPurchaseFilter,
-  setDateFilter
+  setDateFilter,
+  setAccountFilter,
+  setAccountSort
 } from "./actions.js";
 
-// Create the store, passing in the reducer as the
-// only argument
 let store = createStore(bankApp);
 
-// Set up the listener. The subscribe method returns a
-// function to unregister the listener so set it equal
-// to a variable for later use.
 let unsubscribe = store.subscribe(() => {
-  // Log the new state to the console
   console.log(store.getState());
 });
 
 store.dispatch(
   createAccount({
-    owner: "",
-    balance: "",
-    Id: ""
+    owner: "Max",
+    balance: "10"
   })
 );
 
 store.dispatch(
   createTransaction({
-    Id: "",
-    type: "",
-    sourceAccount: "",
-    recipientAccount: "ext",
-    date: ""
+    type: "deposit",
+    sourceAccount: "ext",
+    recipientAccount: "1",
+    amount: "5",
+    date: "2017-12-21"
   })
 );
 
-store.dispatch(setDateFilter(""));
+store.dispatch(setDateFilter("2017-11-15"));
+store.dispatch(setAccountFilter("1"));
 
-// Unregister/cancel the listener
 unsubscribe();
 
 ReactDOM.render(<App />, document.getElementById("root"));
