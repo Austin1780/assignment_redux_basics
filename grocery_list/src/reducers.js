@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 
 // Import the action type constants
-import { CREATE_ITEM, PURCAHSE_ITEM } from "./actions";
+import { CREATE_ITEM, PURCHASE_ITEM , SET_CATEGORY_FILTER, SET_PURCHASE_FILTER, } from "./actions";
 
 // Puppies reducer
 // Default state is simply an empty array
@@ -39,18 +39,38 @@ const purchaseFilter = (state = "NOT_PURCHASED", action) => {
   }
 };
 
-const categoryFilter = (state = "ALL", action) => {
+const categoryFilter = (state = "all", action) => {
   switch (action.type) {
-    case SET_CATEOGRY_FILTER:
+    case SET_CATEGORY_FILTER:
       return action.data;
     default:
       return state;
   }
 };
 
+const nameSort = (state="", action) => {
+  switch(action.type) {
+    case "SET_NAME_SORT":
+      return action.data;
+    default:
+      return state;
+  }
+}
+
+const descriptionSort = (state="", action) => {
+  switch(action.type) {
+    case "SET_DESCRIPTION_SORT":
+      return action.data;
+    default:
+      return state;
+  };
+}
+
 // Combine our 2 reducers into one
 export const groceryListApp = combineReducers({
   groceryList,
   purchaseFilter,
-  cateogryFilter
+  categoryFilter,
+  nameSort,
+  descriptionSort
 });
