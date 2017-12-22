@@ -1,4 +1,5 @@
 export const CREATE_ACCOUNT = "CREATE_ACCOUNT";
+// export const CREATE_TRANSACTION = "CREATE_TRANSACTION";
 export const DEPOSIT = "DEPOSIT";
 export const WITHDRAWL = "WITHDRAWL";
 export const TRANSFER = "TRANSFER";
@@ -18,7 +19,6 @@ export const createAccount = data => {
 };
 
 let nextTransactionId = 0;
-
 export const setDateFilter = data => {
   return {
     type: SET_DATE_FILTER,
@@ -33,7 +33,7 @@ export const setAccountFilter = data => {
   };
 };
 
-const deposit = (toId, amount) => {
+export const deposit = (toId, amount, date) => {
   return {
     type: DEPOSIT,
     data: {
@@ -41,11 +41,13 @@ const deposit = (toId, amount) => {
       fromId: "ext",
       toId,
       amount,
+      date,
       transactionId: nextTransactionId++
     }
+  }
 }
 
-const withdrawl = (fromId, amount) => {
+export const withdrawl = (fromId, amount, date) => {
   return {
     type: WITHDRAWL,
     data: {
@@ -53,11 +55,13 @@ const withdrawl = (fromId, amount) => {
       fromId, 
       toId: "ext",
       amount,
+      date,
       transactionId: nextTransactionId++
     }
+  }
 }
 
-const transfer = (toId, fromId, amount) => {
+export const transfer = (toId, fromId, amount, date) => {
   return {
     type: TRANSFER,
     data: {
@@ -65,6 +69,9 @@ const transfer = (toId, fromId, amount) => {
       fromId, 
       toId,
       amount,
+      date,
       transactionId: nextTransactionId++
     }
+  }
 }
+
